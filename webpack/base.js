@@ -4,6 +4,7 @@ const ExternalsPlugin = require('webpack-externals-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const babelLoader = require('./loaders/babel');
+const imageLoader = require('./loaders/image');
 
 const projectRoot = path.resolve(__dirname, '..');
 const nodeModulesPath = path.resolve(projectRoot, 'node_modules');
@@ -22,6 +23,7 @@ module.exports = {
         module: {
             loaders: [
                 babelLoader(),
+                imageLoader(),
                 {
                     test: /\.(css|less)$/,
                     loader: ExtractTextPlugin.extract([ 'css', 'less' ])
@@ -44,6 +46,7 @@ module.exports = {
         module: {
             loaders: [
                 babelLoader(),
+                { test: /.*\.(gif|png|jpe?g|svg)$/i, loader: 'null' },
                 { test: /\.(less|css)$/, loader: 'null' }
             ]
         },

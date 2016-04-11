@@ -3,6 +3,7 @@ const WebpackDevServer = require('webpack-dev-server');
 
 const base = require('./base');
 const babelLoader = require('./loaders/babel');
+const imageLoader = require('./loaders/image');
 
 module.exports = {
     getWebpackDevServer: function (port, cb) {
@@ -21,6 +22,7 @@ module.exports = {
 
         clientConfig.module.loaders = [
             babelLoader({ reactHot: true }),
+            imageLoader(),
             {
                 test: /\.(css|less)$/,
                 loaders: ['style', 'css', 'less']
