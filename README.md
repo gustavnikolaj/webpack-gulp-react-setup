@@ -11,6 +11,8 @@
 - [x] images loaded should have their hash as the name
 - [ ] concatenated css should have the hash of the file as the name (resolving the name in https://github.com/gustavnikolaj/webpack-gulp-react-setup/blob/master/app/server.main.js)
 - [ ] the hash of the client bundle should be part of its name (resolving the name in https://github.com/gustavnikolaj/webpack-gulp-react-setup/blob/master/app/server.main.js)
+- [ ] add source maps
+- [ ] autoprefixer for css/less
 
 ## Bonus points
 
