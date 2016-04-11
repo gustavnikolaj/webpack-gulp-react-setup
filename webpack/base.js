@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExternalsPlugin = require('webpack-externals-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const babelLoader = require('./loaders/babel');
 
@@ -8,8 +9,6 @@ const projectRoot = path.resolve(__dirname, '..');
 const nodeModulesPath = path.resolve(projectRoot, 'node_modules');
 const appRoot = path.resolve(projectRoot, 'app');
 const buildRoot = path.resolve(projectRoot, 'build');
-
-
 
 module.exports = {
     client: {
@@ -21,9 +20,17 @@ module.exports = {
             publicPath: '/static/'
         },
         module: {
-            loaders: [ babelLoader() ]
+            loaders: [
+                babelLoader(),
+                {
+                    test: /\.(css|less)$/,
+                    loader: ExtractTextPlugin.extract([ 'css', 'less' ])
+                }
+            ]
         },
-        plugins: []
+        plugins: [
+            new ExtractTextPlugin("styles.css")
+        ]
     },
     server: {
         name: 'server',
@@ -35,10 +42,12 @@ module.exports = {
             libraryTarget: 'commonjs2'
         },
         module: {
-            loaders: [ babelLoader() ]
+            loaders: [
+                babelLoader(),
+                { test: /\.(less|css)$/, loader: 'null' }
+            ]
         },
         plugins: [
-            new webpack.IgnorePlugin(/\.(css|less)$/),
             new webpack.BannerPlugin('require("source-map-support").install();', { raw: true, entryOnly: false }),
             new ExternalsPlugin({ type: 'commonjs', include: nodeModulesPath })
         ]

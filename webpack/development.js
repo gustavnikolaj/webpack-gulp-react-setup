@@ -19,7 +19,13 @@ module.exports = {
 
         clientConfig.output.publicPath = 'http://localhost:' + port + '/static/';
 
-        clientConfig.module.loaders = [ babelLoader({ reactHot: true }) ];
+        clientConfig.module.loaders = [
+            babelLoader({ reactHot: true }),
+            {
+                test: /\.(css|less)$/,
+                loaders: ['style', 'css', 'less']
+            }
+        ];
 
         const devServer = new WebpackDevServer(webpack(clientConfig), {
             publicPath: 'http://localhost:' + port + '/static/',
