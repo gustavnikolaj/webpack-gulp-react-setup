@@ -2,20 +2,14 @@ const path = require('path');
 const webpack = require('webpack');
 const ExternalsPlugin = require('webpack-externals-plugin');
 
+const babelLoader = require('./loaders/babel');
+
 const projectRoot = path.resolve(__dirname, '..');
 const nodeModulesPath = path.resolve(projectRoot, 'node_modules');
 const appRoot = path.resolve(projectRoot, 'app');
 const buildRoot = path.resolve(projectRoot, 'build');
 
-const loaders = {
-    babel: {
-        test:   /\.js$/,
-        loader: 'babel',
-        exclude: /node_modules/,
-        babelrc: path.resolve(projectRoot, '.babelrc'),
-        include: appRoot
-    }
-};
+
 
 module.exports = {
     client: {
@@ -27,10 +21,9 @@ module.exports = {
             publicPath: '/static/'
         },
         module: {
-            loaders: [
-                loaders.babel
-            ]
-        }
+            loaders: [ babelLoader() ]
+        },
+        plugins: []
     },
     server: {
         name: 'server',
@@ -42,9 +35,7 @@ module.exports = {
             libraryTarget: 'commonjs2'
         },
         module: {
-            loaders: [
-                loaders.babel
-            ]
+            loaders: [ babelLoader() ]
         },
         plugins: [
             new webpack.IgnorePlugin(/\.(css|less)$/),
