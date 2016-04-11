@@ -10,7 +10,7 @@ app.use('/static', express.static(buildPath));
 
 app.use(function (req, res, next) {
     res.contentType('text/html');
-    res.end(serverRender(req));
+    res.end('<!doctype html>' + serverRender(req));
 });
 
 app.listen(3000, function () {
