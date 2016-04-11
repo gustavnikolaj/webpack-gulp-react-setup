@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import Header from './components/Header/Header';
 
 export default class Application extends Component {
     render() {
         return (
-            <h1>Hello Gulp World</h1>
+            <div>
+                <Header/>
+                <p>Hej med dig</p>
+            </div>
         );
     }
 }
