@@ -4,6 +4,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const base = require('./base');
 const babelLoader = require('./loaders/babel');
 const imageLoader = require('./loaders/image');
+const developmentStyleLoader = require('./loaders/developmentStyle');
 
 module.exports = {
     getWebpackDevServer: function (port, cb) {
@@ -23,10 +24,7 @@ module.exports = {
         clientConfig.module.loaders = [
             babelLoader({ reactHot: true }),
             imageLoader(),
-            {
-                test: /\.(css|less)$/,
-                loaders: ['style', 'css', 'less']
-            }
+            developmentStyleLoader()
         ];
 
         const devServer = new WebpackDevServer(webpack(clientConfig), {
