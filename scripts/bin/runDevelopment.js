@@ -44,3 +44,16 @@ const startNodemon = function () {
     .on('stdout', nodemonLog)
     .on('stderr', nodemonLog);
 };
+
+process.on('SIGINT', function () {
+    if (!nodemonRunning) {
+        return process.exit();
+    }
+
+    nodemon.once('exit', function () {
+        process.exit();
+    });
+
+    nodemonLog('shutting down...');
+    nodemon.emit('quit');
+});
