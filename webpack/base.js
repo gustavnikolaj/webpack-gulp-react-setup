@@ -16,6 +16,7 @@ const buildRoot = path.resolve(projectRoot, 'build');
 module.exports = {
     client: {
         name: 'client',
+        devtool: 'sourcemap',
         entry: path.resolve(appRoot, 'client.main.js'),
         output: {
             path: buildRoot,
@@ -42,6 +43,7 @@ module.exports = {
     },
     server: {
         name: 'server',
+        devtool: 'sourcemap',
         target: 'node',
         entry: path.resolve(appRoot, 'server.main.js'),
         output: {

@@ -11,6 +11,9 @@ module.exports = {
         const port = 32145;
         var clientConfig = base.client;
 
+        // eval - Each module is executed with eval and //@ sourceURL.
+        clientConfig.devtool = 'cheap-module-eval-source-map';
+
         clientConfig.output.filename = 'bundle.js',
 
         clientConfig.entry = [
