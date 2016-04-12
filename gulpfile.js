@@ -5,8 +5,6 @@ const glob = require('glob');
 const webpack = require('webpack');
 const nodemon = require('nodemon');
 
-const webpackDevServerPort = 32145;
-
 gulp.task('default', ['run']);
 
 /* BUILDING AND WATCHING */
@@ -39,7 +37,7 @@ gulp.task('build', ['client-build', 'server-build']);
 
 gulp.task('client-watch', function () {
     const getDevServer = require('./webpack/development').getWebpackDevServer;
-    getDevServer(webpackDevServerPort, function (err) {
+    getDevServer(function (err) {
         if (err) {
             console.log(err);
         }
@@ -60,10 +58,7 @@ gulp.task('run', ['watch'], function () {
     nodemon({
         execMap: { js: 'node'},
         script: path.join(__dirname, 'server/app'),
-        watch: ['server'],
-        env: {
-            WEBPACK_DEV_SERVER_URL: 'http://localhost:' + webpackDevServerPort
-        }
+        watch: ['server']
     }).on('restart', function () {
         console.log('Restarted!');
     });

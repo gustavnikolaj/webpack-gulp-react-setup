@@ -7,8 +7,11 @@ const imageLoader = require('./loaders/image');
 const developmentStyleLoader = require('./loaders/developmentStyle');
 
 module.exports = {
-    getWebpackDevServer: function (port, cb) {
+    getWebpackDevServer: function (cb) {
+        const port = 32145;
         var clientConfig = base.client;
+
+        clientConfig.output.filename = 'bundle.js',
 
         clientConfig.entry = [
             'webpack-dev-server/client?http://localhost:' + port,

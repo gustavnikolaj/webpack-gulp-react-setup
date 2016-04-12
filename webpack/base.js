@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExternalsPlugin = require('webpack-externals-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const AssetsPlugin = require('assets-webpack-plugin');
 
 const babelLoader = require('./loaders/babel');
 const imageLoader = require('./loaders/image');
@@ -17,7 +18,7 @@ module.exports = {
         entry: path.resolve(appRoot, 'client.main.js'),
         output: {
             path: buildRoot,
-            filename: 'bundle.js',
+            filename: 'bundle.[hash].js',
             publicPath: '/static/'
         },
         module: {
@@ -31,7 +32,8 @@ module.exports = {
             ]
         },
         plugins: [
-            new ExtractTextPlugin("styles.css")
+            new ExtractTextPlugin("style.[hash].css"),
+            new AssetsPlugin({filename: 'assets.json', path: 'build/'})
         ]
     },
     server: {
@@ -41,12 +43,13 @@ module.exports = {
         output: {
             path: buildRoot,
             filename: 'bundle.server.js',
-            libraryTarget: 'commonjs2'
+            libraryTarget: 'commonjs2',
+            publicPath: '/static/'
         },
         module: {
             loaders: [
                 babelLoader(),
-                { test: /.*\.(gif|png|jpe?g|svg)$/i, loader: 'null' },
+                imageLoader(),
                 { test: /\.(less|css)$/, loader: 'null' }
             ]
         },
