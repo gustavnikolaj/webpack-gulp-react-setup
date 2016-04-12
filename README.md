@@ -2,7 +2,7 @@
 
 - [x] basic webpack setup
 - [x] hot module reloading
-- [x] babel loader for server that ignores node_modules *1*
+- [x] babel loader for server that ignores node_modules **1**
 - [x] nodemon reloading the server when either server files or the server bundle changes
 - [x] load less / css in the app folder and get them inserted in head as style tags in development
 - [x] less / css should be hot reloadable in development
@@ -17,7 +17,7 @@
 
 ## Bonus points
 
-- [x] split the bundle and load other parts of the bundle on navigation ( [react-router-docs](https://github.com/reactjs/react-router/blob/master/docs/guides/DynamicRouting.md) - [example](https://github.com/ryanflorence/example-react-router-server-rendering-lazy-routes) )
+- [x] split the bundle and load other parts of the bundle on navigation ( [react-router-docs](https://github.com/reactjs/react-router/blob/master/docs/guides/DynamicRouting.md) - [example](https://github.com/ryanflorence/example-react-router-server-rendering-lazy-routes) ) **2**
 - [ ] integration with react-intl
 - [x] react story book
 - [ ] css modules
@@ -27,3 +27,7 @@
 It means that any modules you require from the app folder must be `dependencies`
 not `devDependencies`. Webpack loaders and build time stuff can all be
 `devDependencies`.
+
+## Note 2: consider splitting "containers" as routes
+
+As done here: https://github.com/reactjs/react-router/tree/master/examples/huge-apps/
