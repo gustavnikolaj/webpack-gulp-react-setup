@@ -6,9 +6,14 @@ const babelLoader = require('./loaders/babel');
 const imageLoader = require('./loaders/image');
 const developmentStyleLoader = require('./loaders/developmentStyle');
 
+const port = 32145;
+
+var serverConfig = base.server;
+serverConfig.output.publicPath = 'http://localhost:' + port + '/static/';
+
+
 module.exports = {
     getWebpackDevServer: function (cb) {
-        const port = 32145;
         var clientConfig = base.client;
 
         // eval - Each module is executed with eval and //@ sourceURL.
@@ -41,5 +46,5 @@ module.exports = {
         });
         return devServer.listen(port, 'localhost', cb);
     },
-    server: base.server
+    server: serverConfig
 };
