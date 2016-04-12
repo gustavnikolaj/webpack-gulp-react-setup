@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
-const serverRender = require('../build/bundle.server.js')
-    .default(require('../build/assets.json'));
+const serverRender = require('../build/bundle.server.js')(require('../build/assets.json'));
 
 const buildPath = path.resolve(__dirname, '../build');
 

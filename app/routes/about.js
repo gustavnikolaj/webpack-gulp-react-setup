@@ -2,7 +2,7 @@ module.exports = {
     path: 'about',
     getComponent(location, cb) {
         require.ensure([], (require) => {
-            cb(null, require('../components/About/About').default);
+            cb(null, require('../components/About/About'));
         });
     }
 };

@@ -1,13 +1,8 @@
-import App from '../components/App/App';
-
-import homeRoute from './home';
-import aboutRoute from './about';
-
-export default {
+module.exports = {
     path: '/',
-    component: App,
-    indexRoute: homeRoute,
+    component: require('../components/App/App'),
+    indexRoute: require('./home'),
     childRoutes: [
-        aboutRoute
+        require('./about')
     ]
 };

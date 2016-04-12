@@ -1,6 +1,6 @@
 const React = require('react');
 const TestUtils = require('react-addons-test-utils');
-const Home = require('../../components/Home/Home').default;
+const Home = require('../../components/Home/Home');
 const expect = require('unexpected')
     .clone()
     .use(require('unexpected-react'))
