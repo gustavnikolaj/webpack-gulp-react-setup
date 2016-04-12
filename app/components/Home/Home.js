@@ -10,7 +10,7 @@ export default class Home extends Component {
         return (
             <div>
                 <p>Hello, {name}</p>
-                <p>This is the home page.</p>
+                <p>This is the landing page.</p>
             </div>
         );
     }
