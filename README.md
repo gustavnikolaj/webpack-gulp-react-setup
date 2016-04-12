@@ -13,6 +13,7 @@
 - [ ] the hash of the client bundle should be part of its name (resolving the name in https://github.com/gustavnikolaj/webpack-gulp-react-setup/blob/master/app/server.main.js)
 - [ ] add source maps
 - [ ] autoprefixer for css/less
+- [ ] tests of bundled code running in straight mocha
 
 ## Bonus points
 
