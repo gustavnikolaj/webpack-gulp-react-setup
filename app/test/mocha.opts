@@ -1,0 +1,3 @@
+--reporter spec
+--require app/test/babelSetup
+app/**/*.spec.js
