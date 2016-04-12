@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "gulp build",
-    "start": "gulp",
-    "storybook": "gulp build-storybook && start-storybook -p 3001 -c ./storybook",
+    "build": "node scripts/bin/buildProduction.js",
+    "start": "node scripts/bin/runDevelopment.js",
+    "storybook": "node scripts/bin/buildStorybookToc.js && start-storybook -p 3001 -c ./storybook",
     "test:app": "mocha --opts app/test/mocha.opts",
     "test": "npm run test:app"
   },
@@ -19,6 +19,7 @@
     "autoprefixer": "6.3.6",
     "babel-eslint": "6.0.2",
     "babel-loader": "6.2.4",
+    "chalk": "1.1.3",
     "css-loader": "0.23.1",
     "eslint": "2.7.0",
     "eslint-config-onelint": "1.0.2",
@@ -26,7 +27,6 @@
     "eslint-plugin-react": "4.3.0",
     "extract-text-webpack-plugin": "1.0.1",
     "glob": "7.0.3",
-    "gulp": "3.9.1",
     "image-webpack-loader": "1.6.3",
     "less": "2.6.1",
     "less-loader": "2.2.3",
