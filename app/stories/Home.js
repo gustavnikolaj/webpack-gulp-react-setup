@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from '../components/Header/Header';
+import Home from '../components/Home/Home';
 import { storiesOf } from '@kadira/storybook';
 
-storiesOf('Header', module)
+storiesOf('Home', module)
   .add('with no name', () => (
-      <Header />
+      <Home />
   ))
   .add('with no text', () => (
-      <Header name='Foo' />
+      <Home name='Foo' />
   ));

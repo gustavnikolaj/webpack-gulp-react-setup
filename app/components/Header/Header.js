@@ -1,24 +1,21 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 import './header.less';
-import catImage from './cat.jpg';
 
 export default class Header extends Component {
     render() {
-        let name = 'Gulp';
-        if (this.props.name) {
-            name = this.props.name;
-        }
-
         return (
             <div>
                 <h1>Hello Gulp World</h1>
-                <img src={catImage} />
-                <p>Hello, {name}</p>
+                <ul>
+                    <li>
+                        <Link to='/'>Home</Link>
+                    </li>
+                    <li>
+                        <Link to='/about'>About</Link>
+                    </li>
+                </ul>
             </div>
         );
     }
 }
-
-Header.propTypes = {
-    name: PropTypes.string
-};

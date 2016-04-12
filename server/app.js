@@ -11,7 +11,7 @@ app.use('/static', express.static(buildPath));
 
 app.use(function (req, res, next) {
     res.contentType('text/html');
-    res.end('<!doctype html>' + serverRender(req));
+    res.end('<!doctype html>' + serverRender(req, res));
 });
 
 app.listen(3000, function () {
