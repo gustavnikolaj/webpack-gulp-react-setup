@@ -20,7 +20,7 @@
 - [x] split the bundle and load other parts of the bundle on navigation ( [react-router-docs](https://github.com/reactjs/react-router/blob/master/docs/guides/DynamicRouting.md) - [example](https://github.com/ryanflorence/example-react-router-server-rendering-lazy-routes) ) **2**
 - [ ] integration with react-intl
 - [x] react story book
-- [ ] css modules
+- [ ] css modules ([react-css-modules](https://github.com/gajus/react-css-modules) - [css-loader](https://github.com/webpack/css-loader#css-modules) - github.com/css-modules/css-modules/issues/9)
 
 ## Note 1: node_modules ignored in server bundle
 
