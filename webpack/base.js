@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ExternalsPlugin = require('webpack-externals-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const AssetsPlugin = require('assets-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 const babelLoader = require('./loaders/babel');
 const imageLoader = require('./loaders/image');
@@ -27,10 +28,13 @@ module.exports = {
                 imageLoader(),
                 {
                     test: /\.(css|less)$/,
-                    loader: ExtractTextPlugin.extract([ 'css', 'less' ])
+                    loader: ExtractTextPlugin.extract([ 'css', 'postcss', 'less' ])
                 }
             ]
         },
+        postcss: [
+            autoprefixer({ browsers: ['last 2 versions'] })
+        ],
         plugins: [
             new ExtractTextPlugin("style.[hash].css"),
             new AssetsPlugin({filename: 'assets.json', path: 'build/'})
