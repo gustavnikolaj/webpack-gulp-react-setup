@@ -7,3 +7,5 @@ render(
     <Router routes={routes} history={browserHistory} />,
     document.getElementById('react-root')
 );
+
+fetch('/api/ping').then(function (res) { return res.json() }).then(console.log.bind(console));
