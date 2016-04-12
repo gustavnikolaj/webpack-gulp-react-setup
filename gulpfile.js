@@ -1,5 +1,7 @@
 const gulp = require('gulp');
 const path = require('path');
+const fs = require('fs');
+const glob = require('glob');
 const webpack = require('webpack');
 const nodemon = require('nodemon');
 
@@ -65,4 +67,14 @@ gulp.task('run', ['watch'], function () {
     }).on('restart', function () {
         console.log('Restarted!');
     });
+});
+
+gulp.task('build-storybook', function () {
+    const stories = glob.sync('app/stories/**/*.js');
+
+    const storyIndex = stories.map(function (story) {
+        return 'require("../' + story + '");\n';
+    }).join('');
+
+    fs.writeFileSync('build/stories.js', storyIndex);
 });

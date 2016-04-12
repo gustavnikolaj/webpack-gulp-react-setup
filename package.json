@@ -6,7 +6,7 @@
   "scripts": {
     "build": "gulp build",
     "start": "gulp",
-    "storybook": "start-storybook -p 3001 -c ./storybook",
+    "storybook": "gulp build-storybook && start-storybook -p 3001 -c ./storybook",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -22,6 +22,7 @@
     "eslint-config-onelint-react": "0.0.2",
     "eslint-plugin-react": "4.3.0",
     "extract-text-webpack-plugin": "1.0.1",
+    "glob": "7.0.3",
     "gulp": "3.9.1",
     "image-webpack-loader": "1.6.3",
     "less": "2.6.1",
