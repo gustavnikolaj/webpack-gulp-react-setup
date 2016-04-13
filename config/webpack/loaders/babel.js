@@ -1,5 +1,5 @@
 const path = require('path');
-const projectRoot = path.resolve(__dirname, '../..');
+const projectRoot = path.resolve(__dirname, '../../..');
 const appRoot = path.resolve(projectRoot, 'app');
 
 module.exports = function babelLoaderFactory(options) {

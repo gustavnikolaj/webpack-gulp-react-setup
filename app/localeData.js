@@ -1,4 +1,5 @@
 import {addLocaleData} from 'react-intl';
+import config from '../config/config';
 
 export default function localeData(locale) {
     if (locale === 'da') { return getLocaleDa(); }
@@ -28,5 +29,5 @@ function getLocaleEn() {
 
 export function getLocaleFromDom() {
     var reactRoot = document.getElementById('react-root');
-    return reactRoot.getAttribute('data-locale') || 'en';
+    return reactRoot.getAttribute('data-locale') || config.i18n.defaultLocaleId;
 }

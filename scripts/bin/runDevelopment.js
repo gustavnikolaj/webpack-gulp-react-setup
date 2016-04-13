@@ -2,7 +2,7 @@ const taggedLog = require('../lib/taggedLog');
 const path = require('path');
 const webpack = require('webpack');
 const nodemon = require('nodemon');
-const webpackConfig = require('../../webpack/development');
+const webpackConfig = require('../../config/webpack/development');
 const serverConfig = webpackConfig.server;
 const getDevServer = webpackConfig.getWebpackDevServer;
 

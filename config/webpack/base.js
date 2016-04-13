@@ -9,7 +9,7 @@ const babelLoader = require('./loaders/babel');
 const imageLoader = require('./loaders/image');
 const jsonLoader = require('./loaders/json');
 
-const projectRoot = path.resolve(__dirname, '..');
+const projectRoot = path.resolve(__dirname, '..', '..');
 const nodeModulesPath = path.resolve(projectRoot, 'node_modules');
 const appRoot = path.resolve(projectRoot, 'app');
 const buildRoot = path.resolve(projectRoot, 'build');

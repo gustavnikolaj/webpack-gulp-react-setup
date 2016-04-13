@@ -6,7 +6,7 @@ var readFile = Promise.promisify(fs.readFile);
 
 var findWarnings = require('./lib/findWarnings');
 var loadSrcFiles = require('./lib/loadSrcFiles');
-var config = require('../../app/config');
+var config = require('../../config/config');
 
 var defaultLocaleId = config.i18n.defaultLocaleId;
 

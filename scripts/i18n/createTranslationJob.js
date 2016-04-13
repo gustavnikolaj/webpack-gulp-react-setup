@@ -8,7 +8,7 @@ var mkdirp = Promise.promisify(require('mkdirp'));
 var readFile = Promise.promisify(fs.readFile);
 var writeFile = Promise.promisify(fs.writeFile);
 
-var config = require('../../app/config');
+var config = require('../../config/config');
 
 var supportedLocaleIds = config.i18n.supportedLocaleIds;
 var defaultLocaleId = config.i18n.defaultLocaleId;

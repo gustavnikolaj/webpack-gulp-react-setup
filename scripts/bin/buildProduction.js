@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const webpackConfig = require('../../webpack/production');
+const webpackConfig = require('../../config/webpack/production');
 const rimraf = require('rimraf');
 const path = require('path');
 const taggedLog = require('../lib/taggedLog');

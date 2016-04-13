@@ -13,7 +13,7 @@ var starttime = Date.now();
 
 log('building story book table of contents');
 
-const storybookRoot = path.resolve(__dirname, '../../storybook');
+const buildRoot = path.resolve(__dirname, '../../build');
 const storiesPath = path.resolve(__dirname, '../../app/stories');
 const stories = glob.sync(storiesPath + '/**/*.js');
 
@@ -22,7 +22,7 @@ var storyCount = stories.length;
 log('found', storyCount, storyCount === 1 ? 'story' : 'stories');
 
 const storyIndex = stories.map(function (story) {
-    story = path.relative(storybookRoot, story);
+    story = path.relative(buildRoot, story);
     return 'require("' + story + '");\n';
 }).join('');
 

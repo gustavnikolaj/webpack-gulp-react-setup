@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node scripts/bin/buildProduction.js",
     "start": "node scripts/bin/runDevelopment.js",
-    "storybook": "node scripts/bin/buildStorybookToc.js && start-storybook -p 3001 -c ./storybook",
+    "storybook": "node scripts/bin/buildStorybookToc.js && start-storybook -p 3001 -c ./config/storybook",
     "test:app": "mocha --opts app/test/mocha.opts",
     "test": "npm run test:app"
   },

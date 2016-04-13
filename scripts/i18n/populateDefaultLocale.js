@@ -9,7 +9,7 @@ var mkdirp = Promise.promisify(require('mkdirp'));
 var findWarnings = require('./lib/findWarnings');
 var loadSrcFiles = require('./lib/loadSrcFiles');
 var createDefaultLocale = require('./lib/createDefaultLocale');
-var config = require('../../app/config');
+var config = require('../../config/config');
 
 var defaultLocaleId = config.i18n.defaultLocaleId;
 
