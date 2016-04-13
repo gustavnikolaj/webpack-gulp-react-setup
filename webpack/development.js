@@ -4,6 +4,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const base = require('./base');
 const babelLoader = require('./loaders/babel');
 const imageLoader = require('./loaders/image');
+const jsonLoader = require('./loaders/json');
 const developmentStyleLoader = require('./loaders/developmentStyle');
 
 const port = 32145;
@@ -35,6 +36,7 @@ module.exports = {
         clientConfig.module.loaders = [
             babelLoader({ reactHot: true }),
             imageLoader(),
+            jsonLoader(),
             developmentStyleLoader()
         ];
 

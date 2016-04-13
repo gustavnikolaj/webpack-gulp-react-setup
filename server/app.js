@@ -13,8 +13,16 @@ app.use('/api/ping', function (req, res) {
 });
 
 app.use(function (req, res, next) {
-    res.contentType('text/html');
-    res.end('<!doctype html>' + serverRender(req, res));
+    return serverRender(req).then(result => {
+        if (result.status === 200) {
+            res.contentType('text/html');
+            res.end(result.body);
+        } else if (result.status === 302) {
+            res.redirect(302, result.location);
+        } else {
+            res.status(result.status).send(result.body);
+        }
+    }).catch(next);
 });
 
 app.listen(3000, function () {

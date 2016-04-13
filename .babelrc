@@ -4,6 +4,13 @@
         "react"
     ],
     "plugins": [
-        "add-module-exports"
+        "add-module-exports",
+        [
+            "react-intl",
+            {
+                "messagesDir": "build/messages/",
+                "enforceDescriptions": false
+            }
+        ]
     ]
 }

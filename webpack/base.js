@@ -7,6 +7,7 @@ const autoprefixer = require('autoprefixer');
 
 const babelLoader = require('./loaders/babel');
 const imageLoader = require('./loaders/image');
+const jsonLoader = require('./loaders/json');
 
 const projectRoot = path.resolve(__dirname, '..');
 const nodeModulesPath = path.resolve(projectRoot, 'node_modules');
@@ -30,7 +31,8 @@ module.exports = {
                 {
                     test: /\.(css|less)$/,
                     loader: ExtractTextPlugin.extract([ 'css', 'postcss', 'less' ])
-                }
+                },
+                jsonLoader()
             ]
         },
         postcss: [
@@ -56,6 +58,7 @@ module.exports = {
             loaders: [
                 babelLoader(),
                 imageLoader(),
+                jsonLoader(),
                 { test: /\.(less|css)$/, loader: 'null' }
             ]
         },
