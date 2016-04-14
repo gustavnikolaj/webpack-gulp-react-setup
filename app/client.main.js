@@ -14,4 +14,3 @@ localeData(locale).then(messages => render(
     document.getElementById('react-root')
 ));
 
-fetch('/api/ping').then(function (res) { return res.json() }).then(console.log.bind(console));
