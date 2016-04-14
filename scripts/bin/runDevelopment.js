@@ -1,59 +1,57 @@
 const taggedLog = require('../lib/taggedLog');
 const path = require('path');
 const webpack = require('webpack');
-const nodemon = require('nodemon');
 const webpackConfig = require('../../config/webpack/development');
 const serverConfig = webpackConfig.server;
 const getDevServer = webpackConfig.getWebpackDevServer;
+const WatchedProcess = require('../lib/WatchedProcess');
+
+const serverLog = taggedLog('server');
+const devServerLog = taggedLog('client dev server');
+const serverBundle = taggedLog('server bundle');
+const watchLog = taggedLog('server watch');
+
+const serverRoot = path.resolve(__dirname, '../../server');
+const watched = new WatchedProcess({
+    command: 'node',
+    args: [ path.resolve(serverRoot, 'app.js') ],
+    watchDirectory: serverRoot
+});
+
+watched.on('output', function (output) {
+    if (Buffer.isBuffer(output)) {
+        output = output.toString('utf-8').trim();
+    }
+    if (/^(Monitored|Watched)Process: ?/.test(output)) {
+        return watchLog(output.replace(/^(Monitored|Watched)Process: ?/, ''));
+    }
+    return serverLog(output);
+});
+
+process.on('SIGINT', function () {
+    watched.stop(function () {
+        watched.removeAllListeners();
+        console.log('');
+        process.exit(0);
+    });
+});
 
 // START THE WEBPACK DEVELOPMENT SERVER HOSTING THE HOT MODULE RELOADING BUNDLE
-const devServerLog = taggedLog('client dev server');
 getDevServer(function (err) {
     devServerLog(err || 'webpack dev server running');
 });
 
 // START THE WEBPACK BUNDLER FOR THE SERVER BUNDLE
-var nodemonRunning = false;
-const serverWatchLog = taggedLog('server bundle');
-serverWatchLog('starting initial build');
+var started = false;
+serverBundle('starting initial build');
 webpack(serverConfig).watch(100, function (err, stats) {
     var duration = stats.endTime - stats.startTime;
-    if (nodemonRunning) {
-        serverWatchLog('rebuilt in ' + duration + 'ms');
-        return nodemon.restart();
+    if (started) {
+        serverBundle('rebuilt in ' + duration + 'ms');
+        return watched.restart();
     }
     // Start the server after first build, to avoid immediate restart
-    serverWatchLog('initial build completed in ' + duration + 'ms');
-    startNodemon();
-});
-
-// START NODEMON RUNNING THE WEB SERVER
-const nodemonLog = taggedLog('server');
-const startNodemon = function () {
-    nodemonRunning = true;
-    nodemonLog('starting nodemon');
-    nodemon({
-        execMap: { js: 'node'},
-        script: path.join(__dirname, '../../server/app'),
-        watch: ['server'],
-        stdout: false
-    })
-    .on('restart', function () {
-        nodemonLog('restarted');
-    })
-    .on('stdout', nodemonLog)
-    .on('stderr', nodemonLog);
-};
-
-process.on('SIGINT', function () {
-    if (!nodemonRunning) {
-        return process.exit();
-    }
-
-    nodemon.once('exit', function () {
-        process.exit();
-    });
-
-    nodemonLog('shutting down...');
-    nodemon.emit('quit');
+    serverBundle('initial build completed in ' + duration + 'ms');
+    started = true;
+    watched.start();
 });
