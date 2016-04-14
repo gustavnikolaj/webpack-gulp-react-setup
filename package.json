@@ -8,6 +8,7 @@
     "start": "node scripts/bin/runDevelopment.js",
     "storybook": "node scripts/bin/buildStorybookToc.js && start-storybook -p 3001 -c ./config/storybook",
     "test:app": "mocha --opts app/test/mocha.opts",
+    "lint": "eslint .",
     "test": "npm run test:app"
   },
   "keywords": [],
